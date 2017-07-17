@@ -124,3 +124,13 @@ $ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
     dbi:SQLite:myapp.db \
     on_connect_do="PRAGMA foreign_keys = ON"
 ```
+```pl
+# Enable the model in the controller
+$c->model('DB::Book')
+$c->model('DB')->resultset('Book')
+$c->model('DB::Book')->search({}, {order_by => 'title DESC'});
+```
+```
+$ export DBIC_TRACE=1
+$ script/myapp_server.pl -r
+```

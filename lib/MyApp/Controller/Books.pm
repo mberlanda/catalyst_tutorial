@@ -58,7 +58,7 @@ sub list :Local {
     # stash where they can be accessed by the TT template
     # $c->stash(books => [$c->model('DB::Book')->all]);
     # But, for now, use this code until we create the model later
-    $c->stash(books => '');
+    $c->stash(books => [$c->model('DB::Book')->search({}, {order_by => 'rating DESC'})]);
 
     # Set the TT template to use.  You will almost always want to do this
     # in your action methods (action methods respond to user input in
