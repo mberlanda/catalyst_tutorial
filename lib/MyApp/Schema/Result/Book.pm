@@ -127,4 +127,39 @@ __PACKAGE__->many_to_many("authors", "book_authors", "author");
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
+
+=head2 author_count
+
+Return the number of authors for the current book
+
+=cut
+
+sub author_count {
+    my ($self) = @_;
+
+    # Use the 'many_to_many' relationship to fetch all of the authors for the current
+    # and the 'count' method in DBIx::Class::ResultSet to get a SQL COUNT
+    return $self->authors->count;
+}
+
+
+=head2 author_list
+
+Return a comma-separated list of authors for the current book
+
+=cut
+
+sub author_list {
+    my ($self) = @_;
+
+    # Loop through all authors for the current book, calling all the 'full_name'
+    # Result Class method for each
+    my @names;
+    foreach my $author ($self->authors) {
+        push(@names, $author->full_name);
+    }
+
+    return join(', ', @names);
+}
+
 1;
