@@ -25,7 +25,11 @@ $ script/hello_create.pl view HTML TT
  exists "~/personal/pl/Hello/script/../t"
 created "~/personal/pl/Hello/script/../lib/Hello/View/HTML.pm"
 created "~/personal/pl/Hello/script/../t/view_HTML.t"
-
+$ touch root/hello.tt
+# Create a controller
+$ script/hello_create.pl controller Site
+$ mkdir root/site
+$ touch root/site/test.tt
 ```
 
 Resources:
