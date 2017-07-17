@@ -156,10 +156,17 @@ sub delete :Chained('object') :PathPart('delete') :Args(0) {
     $c->stash->{object}->delete;
 
     # Set a status message to be displayed at the top of the view
-    $c->stash->{status_msg} = "Book deleted.";
+    #$c->stash->{status_msg} = "Book deleted.";
 
     # Forward to the list action/method in this controller
-    $c->forward('list');
+    # $c->forward('list');
+    # Redirect the user back to the list page.  Note the use
+    # of $self->action_for as earlier in this section (BasicCRUD)
+    # $c->response->redirect($c->uri_for($self->action_for('list')));
+
+    # Redirect the user back to the list page with status msg as an arg
+    $c->response->redirect($c->uri_for($self->action_for('list'),
+        {status_msg => "Book deleted."}));
 }
 
 =head2 object
