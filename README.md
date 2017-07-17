@@ -155,3 +155,9 @@ $ mkdir root/static/css
 $ touch root/static/css/main.css
 $ script/myapp_test.pl "/books/list" | lynx -stdin
 ```
+
+### Basic CRUD
+```
+# Formless submission
+http://localhost:3000/books/url_create/TCPIP_Illustrated_Vol-2/5/4
+```
