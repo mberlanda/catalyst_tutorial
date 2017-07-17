@@ -1,24 +1,24 @@
 #!/usr/bin/env perl
 
 use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run('Hello', 'Test');
+Catalyst::ScriptRunner->run('MyApp', 'Test');
 
 1;
 
 =head1 NAME
 
-hello_test.pl - Catalyst Test
+myapp_test.pl - Catalyst Test
 
 =head1 SYNOPSIS
 
-hello_test.pl [options] uri
+myapp_test.pl [options] uri
 
  Options:
    --help    display this help and exits
 
  Examples:
-   hello_test.pl http://localhost/some_action
-   hello_test.pl /some_action
+   myapp_test.pl http://localhost/some_action
+   myapp_test.pl /some_action
 
  See also:
    perldoc Catalyst::Manual

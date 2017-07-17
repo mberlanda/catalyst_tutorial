@@ -1,7 +1,0 @@
-<p>
-  This is a TT view template, called '[% template.name %]'.
-</p>
-<p>
-  The foo value is '[% foo %]'.
-</p>
-

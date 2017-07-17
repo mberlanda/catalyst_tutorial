@@ -4,17 +4,17 @@ use strict;
 use warnings;
 
 use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run('Hello', 'Create');
+Catalyst::ScriptRunner->run('MyApp', 'Create');
 
 1;
 
 =head1 NAME
 
-hello_create.pl - Create a new Catalyst Component
+myapp_create.pl - Create a new Catalyst Component
 
 =head1 SYNOPSIS
 
-hello_create.pl [options] model|view|controller name [helper] [options]
+myapp_create.pl [options] model|view|controller name [helper] [options]
 
  Options:
    --force        don't create a .new file where a file to be created exists
@@ -22,14 +22,14 @@ hello_create.pl [options] model|view|controller name [helper] [options]
    --help         display this help and exits
 
  Examples:
-   hello_create.pl controller My::Controller
-   hello_create.pl --mechanize controller My::Controller
-   hello_create.pl view My::View
-   hello_create.pl view HTML TT
-   hello_create.pl model My::Model
-   hello_create.pl model SomeDB DBIC::Schema MyApp::Schema create=dynamic\
+   myapp_create.pl controller My::Controller
+   myapp_create.pl --mechanize controller My::Controller
+   myapp_create.pl view My::View
+   myapp_create.pl view HTML TT
+   myapp_create.pl model My::Model
+   myapp_create.pl model SomeDB DBIC::Schema MyApp::Schema create=dynamic\
    dbi:SQLite:/tmp/my.db
-   hello_create.pl model AnotherDB DBIC::Schema MyApp::Schema create=static\
+   myapp_create.pl model AnotherDB DBIC::Schema MyApp::Schema create=static\
    [Loader opts like db_schema, naming] dbi:Pg:dbname=foo root 4321
    [connect_info opts like quote_char, name_sep]
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env perl
 
 use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run('Hello', 'CGI');
+Catalyst::ScriptRunner->run('MyApp', 'CGI');
 
 1;
 
 =head1 NAME
 
-hello_cgi.pl - Catalyst CGI
+myapp_cgi.pl - Catalyst CGI
 
 =head1 SYNOPSIS
 

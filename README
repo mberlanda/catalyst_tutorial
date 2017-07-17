@@ -36,3 +36,27 @@ Resources:
 
 - [CPNAM Catalyst Manual](https://metacpan.org/release/Catalyst-Manual)
 - [Template Toolkit](http://template-toolkit.org/)
+
+### More Catalyst Basics
+
+```
+$ catalyst.pl MyApp
+$ perl Makefile.PL
+$ perl -Ilib -e 'use MyApp; use Config::General;
+    Config::General->new->save_file("myapp.conf", MyApp->config);'
+```
+```pl
+# Edit the list of Catalyst plugins
+# Load plugins
+#lib/MyApp.pm
+use Catalyst qw/
+    -Debug
+    ConfigLoader
+    Static::Simple
+
+    StackTrace
+/;
+__PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
+# Makefile.PL
+requires 'Catalyst::Plugin::StackTrace';
+```

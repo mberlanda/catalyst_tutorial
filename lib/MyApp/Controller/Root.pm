@@ -1,4 +1,4 @@
-package Hello::Controller::Root;
+package MyApp::Controller::Root;
 use Moose;
 use namespace::autoclean;
 
@@ -14,7 +14,7 @@ __PACKAGE__->config(namespace => '');
 
 =head1 NAME
 
-Hello::Controller::Root - Root Controller for Hello
+MyApp::Controller::Root - Root Controller for MyApp
 
 =head1 DESCRIPTION
 
@@ -65,13 +65,6 @@ This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
-
-sub hello :Global {
-    my ( $self, $c ) = @_;
-
-    $c->stash(template => 'hello.tt', foo => 'bar',
-          another_thing => 1);
-}
 
 __PACKAGE__->meta->make_immutable;
 

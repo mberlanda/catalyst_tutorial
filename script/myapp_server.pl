@@ -5,17 +5,17 @@ BEGIN {
 }
 
 use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run('Hello', 'Server');
+Catalyst::ScriptRunner->run('MyApp', 'Server');
 
 1;
 
 =head1 NAME
 
-hello_server.pl - Catalyst Test Server
+myapp_server.pl - Catalyst Test Server
 
 =head1 SYNOPSIS
 
-hello_server.pl [options]
+myapp_server.pl [options]
 
    -d --debug           force debug mode
    -f --fork            handle each request in a new process
