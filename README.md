@@ -193,3 +193,13 @@ $ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
 DBIx::Class::Schema::Loader::make_schema_at(): DBIx::Class::TimeStamp, as specified in the loader option "components", is not installed at /usr/local/share/perl/5.22.1/Catalyst/Helper/Model/DBIC/Schema.pm line 637
 $ cpanm DBIx::Class::TimeStamp
 ```
+http://localhost:3000/books/list_recent/15
+```
+# http://localhost:3000/books/list_recent_tcp/100
+$ DBIC_TRACE=1 script/myapp_server.pl -r
+[info] MyApp powered by Catalyst 5.90115
+HTTP::Server::PSGI: Accepting connections at http://0:3000/
+PRAGMA foreign_keys = ON:
+SELECT me.id, me.title, me.rating, me.created, me.updated FROM book me WHERE ( ( created > ? AND title LIKE ? ) ): '2017-07-17 18:19:50', '%TCP%'
+SELECT author.id, author.first_name, author.last_name FROM book_author me  JOIN author author ON author.id = me.author_id WHERE ( me.book_id = ? ): '10'
+```
