@@ -203,3 +203,14 @@ PRAGMA foreign_keys = ON:
 SELECT me.id, me.title, me.rating, me.created, me.updated FROM book me WHERE ( ( created > ? AND title LIKE ? ) ): '2017-07-17 18:19:50', '%TCP%'
 SELECT author.id, author.first_name, author.last_name FROM book_author me  JOIN author author ON author.id = me.author_id WHERE ( me.book_id = ? ): '10'
 ```
+
+### Authentication
+
+```
+# Add Users and Roles to the Database
+$ sqlite3 myapp.db < myapp02.sql
+# Add User and Role Information to DBIC Schema
+$ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
+    create=static components=TimeStamp dbi:SQLite:myapp.db \
+    on_connect_do="PRAGMA foreign_keys = ON"  overwrite_modifications=true
+```
