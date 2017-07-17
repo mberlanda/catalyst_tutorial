@@ -134,3 +134,19 @@ $c->model('DB::Book')->search({}, {order_by => 'title DESC'});
 $ export DBIC_TRACE=1
 $ script/myapp_server.pl -r
 ```
+```
+# Create a Wrapper for the view
+# lib/MyApp/View/HTML.pm
+__PACKAGE__->config(
+    # Change default TT extension
+    TEMPLATE_EXTENSION => '.tt2',
+    # Set the location for TT files
+    INCLUDE_PATH => [
+            MyApp->path_to( 'root', 'src' ),
+        ],
+    # Set to 1 for detailed timer stats in your HTML as comments
+    TIMER              => 0,
+    # This is your wrapper template located in the 'root/src'
+    WRAPPER => 'wrapper.tt2',
+);
+$ touch root/src/wrapper.tt2
