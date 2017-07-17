@@ -168,3 +168,28 @@ sub url_create :Chained('/') :PathPart('books/url_create') :Args(3) {
 }
 # http://localhost:3000/books/url_create/TCPIP_Illustrated_Vol-2/5/4
 ```
+Exploring the power of DBIC
+```
+$ sqlite3 myapp.db
+SQLite version 3.11.0 2016-02-15 17:29:24
+Enter ".help" for usage hints.
+sqlite> ALTER TABLE book ADD created TIMESTAMP;
+sqlite> ALTER TABLE book ADD updated TIMESTAMP;
+sqlite> UPDATE book SET created = DATETIME('NOW'), updated = DATETIME('NOW');
+sqlite> SELECT * FROM book;
+1|CCSP SNRS Exam Certification Guide|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+2|TCP/IP Illustrated, Volume 1|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+3|Internetworking with TCP/IP Vol.1|4|2017-07-17 17:02:26|2017-07-17 17:02:26
+4|Perl Cookbook|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+5|Designing with Web Standards|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+6|TCPIP_Illustrated_Vol-2|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+9|TCP/IP Illustrated, Vol 3|5|2017-07-17 17:02:26|2017-07-17 17:02:26
+sqlite> .quit
+$ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
+    create=static components=TimeStamp dbi:SQLite:myapp.db \
+    on_connect_do="PRAGMA foreign_keys = ON"
+ exists "~/personal/pl/MyApp/script/../lib/MyApp/Model"
+ exists "~/personal/pl/MyApp/script/../t"
+DBIx::Class::Schema::Loader::make_schema_at(): DBIx::Class::TimeStamp, as specified in the loader option "components", is not installed at /usr/local/share/perl/5.22.1/Catalyst/Helper/Model/DBIC/Schema.pm line 637
+$ cpanm DBIx::Class::TimeStamp
+```
