@@ -69,7 +69,8 @@ it under the same terms as Perl itself.
 sub hello :Global {
     my ( $self, $c ) = @_;
 
-    $c->response->body("Hello, World!");
+    $c->stash(template => 'hello.tt', foo => 'bar',
+          another_thing => 1);
 }
 
 __PACKAGE__->meta->make_immutable;
