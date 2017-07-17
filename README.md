@@ -11,5 +11,5 @@ $ cpanm Catalyst::Devel
 ### Catalyst Basics
 ```
 $ catalyst.pl Hello
-$ script/hello_server.pl
+$ script/hello_server.pl -r
 ```

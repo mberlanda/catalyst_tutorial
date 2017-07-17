@@ -66,6 +66,12 @@ it under the same terms as Perl itself.
 
 =cut
 
+sub hello :Global {
+    my ( $self, $c ) = @_;
+
+    $c->response->body("Hello, World!");
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;
