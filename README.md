@@ -150,3 +150,8 @@ __PACKAGE__->config(
     WRAPPER => 'wrapper.tt2',
 );
 $ touch root/src/wrapper.tt2
+# Create A Basic Stylesheet
+$ mkdir root/static/css
+$ touch root/static/css/main.css
+$ script/myapp_test.pl "/books/list" | lynx -stdin
+```
