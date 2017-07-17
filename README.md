@@ -44,6 +44,7 @@ $ catalyst.pl MyApp
 $ perl Makefile.PL
 $ perl -Ilib -e 'use MyApp; use Config::General;
     Config::General->new->save_file("myapp.conf", MyApp->config);'
+$ cpanm Catalyst::Plugin::StackTrace
 ```
 ```pl
 # Edit the list of Catalyst plugins
@@ -59,4 +60,35 @@ use Catalyst qw/
 __PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
 # Makefile.PL
 requires 'Catalyst::Plugin::StackTrace';
+```
+```
+# Create a Catalyst controller
+$ script/myapp_create.pl controller Books
+# Create a Catalyst View
+$ script/myapp_create.pl view HTML TT
+$ mkdir -p root/src/books
+$ touch root/src/books/list.tt2
+```
+```pl
+# lib/MyApp/View/HTML.pm
+__PACKAGE__->config(
+    # Change default TT extension
+    TEMPLATE_EXTENSION => '.tt2',
+    render_die => 1,
+);
+# lib/MyApp.pm
+__PACKAGE__->config(
+    name => 'MyApp',
+    # Disable deprecated behavior needed by old applications
+    disable_component_resolution_regex_fallback => 1,
+);
+__PACKAGE__->config(
+    # Configure the view
+    'View::HTML' => {
+        #Set the location for TT files
+        INCLUDE_PATH => [
+            __PACKAGE__->path_to( 'root', 'src' ),
+        ],
+    },
+);
 ```
