@@ -213,4 +213,15 @@ $ sqlite3 myapp.db < myapp02.sql
 $ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
     create=static components=TimeStamp dbi:SQLite:myapp.db \
     on_connect_do="PRAGMA foreign_keys = ON"  overwrite_modifications=true
+
+$ cpanm Catalyst::Plugin::Session
+$ cpanm Catalyst::Plugin::Session::State::Cookie
+$ cpanm Catalyst::Plugin::Session::Store::File
+$ cpanm Catalyst::Plugin::Authentication
+$ cpanm Catalyst::Authentication::Realm::SimpleDB
+
+# Update .conf file
+$ CATALYST_DEBUG=0 perl -Ilib -e 'use MyApp; use Config::General;
+    Config::General->new->save_file("myapp.conf", MyApp->config);'
+
 ```
