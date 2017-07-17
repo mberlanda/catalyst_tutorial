@@ -72,7 +72,7 @@ Create a book with the supplied title, rating, and author
 
 =cut
 
-sub url_create :Local {
+sub url_create :Chained('/') :PathPart('books/url_create') :Args(3) {
     # In addition to self & context, get the title, rating, &
     # author_id args from the URL.  Note that Catalyst automatically
     # puts extra information after the "/<controller_name>/<action_name/"

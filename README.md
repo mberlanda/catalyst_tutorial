@@ -161,3 +161,10 @@ $ script/myapp_test.pl "/books/list" | lynx -stdin
 # Formless submission
 http://localhost:3000/books/url_create/TCPIP_Illustrated_Vol-2/5/4
 ```
+```pl
+# Try the Chained Action
+sub url_create :Chained('/') :PathPart('books/url_create') :Args(3) {
+    my ($self, $c, $title, $rating, $author_id) = @_;
+}
+# http://localhost:3000/books/url_create/TCPIP_Illustrated_Vol-2/5/4
+```
