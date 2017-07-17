@@ -92,3 +92,35 @@ __PACKAGE__->config(
     },
 );
 ```
+```
+# Create a SQLite database
+$ touch myapp01.sql
+$ sqlite3 myapp.db < myapp01.sql
+$ sqlite3 myapp.db
+SQLite version 3.11.0 2016-02-15 17:29:24
+Enter ".help" for usage hints.
+sqlite> select * from book;
+1|CCSP SNRS Exam Certification Guide|5
+2|TCP/IP Illustrated, Volume 1|5
+3|Internetworking with TCP/IP Vol.1|4
+4|Perl Cookbook|5
+5|Designing with Web Standards|5
+sqlite> .q
+$ sqlite3 myapp.db "select * from book"
+# Database access with DBIx::Class
+$ cpanm DBD::SQLite
+$ cpanm Catalyst::Model::DBIC::Schema
+# In order to check the installed version
+$ perl -MCatalyst::Model::DBIC::Schema\ 999
+$ perl -MDBD::SQLite\ 999
+$ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
+    create=static dbi:SQLite:myapp.db \
+    on_connect_do="PRAGMA foreign_keys = ON"
+$ cpanm DBIx::Class::Schema::Loader
+$ cpanm MooseX::NonMoose~0.25
+$ # Re-run the helper to upgrade for you
+$ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
+    create=static naming=current use_namespaces=1 \
+    dbi:SQLite:myapp.db \
+    on_connect_do="PRAGMA foreign_keys = ON"
+```
