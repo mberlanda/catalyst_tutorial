@@ -223,5 +223,10 @@ $ cpanm Catalyst::Authentication::Realm::SimpleDB
 # Update .conf file
 $ CATALYST_DEBUG=0 perl -Ilib -e 'use MyApp; use Config::General;
     Config::General->new->save_file("myapp.conf", MyApp->config);'
+```
 
+```
+# Add Login and Logout Controllers
+$ script/myapp_create.pl controller Login
+$ script/myapp_create.pl controller Logout
 ```
