@@ -230,3 +230,14 @@ $ CATALYST_DEBUG=0 perl -Ilib -e 'use MyApp; use Config::General;
 $ script/myapp_create.pl controller Login
 $ script/myapp_create.pl controller Logout
 ```
+```
+# Using Password Hashes
+$ script/myapp_create.pl model DB DBIC::Schema MyApp::Schema \
+    create=static components=TimeStamp,PassphraseColumn dbi:SQLite:myapp.db \
+    on_connect_do="PRAGMA foreign_keys = ON"
+$ cpanm DBIx::Class::PassphraseColumn
+$ cpanm Catalyst::Plugin::Authentication::Store::DBIx::Class --force
+$ DBIC_TRACE=1 perl -Ilib set_hashed_passwords.pl
+$ sqlite3 myapp.db "select * from users"
+```
+I could not manage to make this part to work. I prefer to let it in standby and to continue with the Tutorial to come back later.

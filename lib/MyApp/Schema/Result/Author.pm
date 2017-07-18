@@ -26,11 +26,13 @@ extends 'DBIx::Class::Core';
 
 =item * L<DBIx::Class::TimeStamp>
 
+=item * L<DBIx::Class::PassphraseColumn>
+
 =back
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp");
+__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "PassphraseColumn");
 
 =head1 TABLE: C<author>
 
@@ -107,9 +109,15 @@ Composing rels: L</book_authors> -> book
 __PACKAGE__->many_to_many("books", "book_authors", "book");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07047 @ 2017-07-17 21:40:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:lPHXGBbXyUpwPVFEFWtEyA
-
+# Created by DBIx::Class::Schema::Loader v0.07047 @ 2017-07-18 12:22:00
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aUCd1aVuYLJn7MAcyFmTIA
+# These lines were loaded from '/usr/local/share/perl/5.22.1/MyApp/Schema/Result/Author.pm' found in @INC.
+# They are now part of the custom portion of this file
+# for you to hand-edit.  If you do not either delete
+# this section or remove that file from @INC, this section
+# will be repeated redundantly when you re-create this
+# file again via Loader!  See skip_load_external to disable
+# this feature.
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

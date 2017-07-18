@@ -68,6 +68,17 @@ __PACKAGE__->config(
         },
     },
 );
+# Configure SimpleDB Authentication
+# __PACKAGE__->config(
+#     'Plugin::Authentication' => {
+#         default => {
+#             class           => 'SimpleDB',
+#             user_model      => 'DB::User',
+#             password_type   => 'self_check',
+#         },
+#     },
+# );
+
 # Start the application
 __PACKAGE__->setup();
 

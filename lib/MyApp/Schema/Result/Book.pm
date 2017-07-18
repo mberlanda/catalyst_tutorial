@@ -26,11 +26,13 @@ extends 'DBIx::Class::Core';
 
 =item * L<DBIx::Class::TimeStamp>
 
+=item * L<DBIx::Class::PassphraseColumn>
+
 =back
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp");
+__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "PassphraseColumn");
 
 =head1 TABLE: C<book>
 
@@ -76,9 +78,9 @@ __PACKAGE__->add_columns(
   "rating",
   { data_type => "integer", is_nullable => 1 },
   "created",
-  { data_type => "timestamp", set_on_create => 1 },
+  { data_type => "timestamp", is_nullable => 1 },
   "updated",
-  { data_type => "timestamp", set_on_create => 1, set_on_update => 1 },
+  { data_type => "timestamp", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -121,13 +123,29 @@ Composing rels: L</book_authors> -> author
 __PACKAGE__->many_to_many("authors", "book_authors", "author");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07047 @ 2017-07-17 21:40:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eyMtDm61JaC1rB1eRrJcag
+# Created by DBIx::Class::Schema::Loader v0.07047 @ 2017-07-18 12:22:00
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:v3MZojZCUKsiLhJn/fp6xA
+# These lines were loaded from '/usr/local/share/perl/5.22.1/MyApp/Schema/Result/Book.pm' found in @INC.
+# They are now part of the custom portion of this file
+# for you to hand-edit.  If you do not either delete
+# this section or remove that file from @INC, this section
+# will be repeated redundantly when you re-create this
+# file again via Loader!  See skip_load_external to disable
+# this feature.
+
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
-
+#
+# Enable automatic date handling
+#
+__PACKAGE__->add_columns(
+    "created",
+    { data_type => 'timestamp', set_on_create => 1 },
+    "updated",
+    { data_type => 'timestamp', set_on_create => 1, set_on_update => 1 },
+);
 =head2 author_count
 
 Return the number of authors for the current book
